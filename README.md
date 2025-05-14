@@ -1,521 +1,585 @@
-# 🚀 Anime.js Animation Framework
+# 🚀 High-Performance Animation Libraries
+![Version](https://img.shields.io/badge/version-1.0.0-blue.svg?cacheSeconds=2592000)
+![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
+![Last Commit](https://img.shields.io/badge/last%20commit-May%202025-brightgreen)
+![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)
 
-![Version](https://img.shields.io/badge/version-4.0.2-blue.svg)
-![License](https://img.shields.io/badge/license-MIT-green.svg)
-![Dependencies](https://img.shields.io/badge/dependencies-0-brightgreen.svg)
-![Build Status](https://img.shields.io/badge/build-passing-brightgreen.svg)
-
-<div align="center">
-  <img src="https://raw.githubusercontent.com/juliangarnier/anime/master/documentation/assets/img/animejs-v4-logo.svg" width="250" alt="Anime.js Logo">
-
-  <p><strong>A lightweight JavaScript animation library</strong></p>
-  <p>Modern, flexible, and high-performance animations for web projects</p>
-</div>
-
----
+> A comprehensive guide to modern web animation libraries for creating fast, responsive, and visually stunning animations across different tech stacks.
 
 ## 📋 Table of Contents
 
 - [Overview](#-overview)
-- [Features](#-features)
-- [Implementation Guide](#-implementation-guide)
+- [Tech Stack Compatibility](#-tech-stack-compatibility)
+- [Libraries Comparison](#-libraries-comparison)
+- [Animation Libraries](#-animation-libraries)
+  - [Anime.js](#-animejs-lightweight-and-versatile)
+  - [GSAP](#-gsap-greensock-animation-platform)
+  - [Three.js](#-threejs-webgl-powered-3d-graphics)
+  - [Framer Motion](#-framer-motion-react-motion-library)
+  - [Lottie](#-lottie-high-quality-animations-from-design-tools)
+  - [AOS](#-aos-animate-on-scroll)
+  - [Motion One](#-motion-one-modern-web-animations-with-waapi)
+  - [Pure CSS/Native](#-pure-cssnative-approaches)
+- [Combining Libraries](#-combining-libraries)
+- [Best Practices](#-best-practices)
 - [Installation](#-installation)
-- [Performance Optimization](#-performance-optimization)
-- [Framework Integration](#-framework-integration)
-- [Browser Compatibility](#-browser-compatibility)
-- [Examples](#-examples)
-- [Comparison with Other Libraries](#-comparison-with-other-libraries)
+- [Usage Examples](#-usage-examples)
 - [Future Improvements](#-future-improvements)
-- [Resources](#-resources)
 - [Author](#-author)
 
----
+## 🔍 Overview
 
-## 🌟 Overview
+This repository provides in-depth analysis of popular animation libraries for modern web development, focusing on performance, capabilities, and integration across different tech stacks. Whether you're building a simple landing page or a complex interactive application, this guide will help you choose the right animation tools for your project.
 
-Anime.js is a versatile JavaScript animation library that powers smooth, flexible animations across modern web projects. Version 4.0.2 brings enhanced performance, responsive features, and improved developer experience for animations that shine on any device or platform.
+### Key Features
 
-### 🛠️ Tech Stack
+- ✨ **Comprehensive analysis** of 7+ animation libraries
+- 🔄 **Compatibility guide** for Laravel, Astro, React, Vue, and vanilla JS projects
+- ⚡ **Performance optimization** techniques for smooth animations
+- 📱 **Responsive animation** considerations for all device types
+- 🧩 **Integration patterns** for combining multiple libraries
+- 🛠️ **Implementation examples** for common animation scenarios
 
-```mermaid
-graph TD
-    A[Anime.js Core] --> B[DOM Animation]
-    A --> C[SVG Animation]
-    A --> D[CSS Animation]
-    A --> E[JS Objects]
-    
-    B --> F[Transform & Opacity]
-    B --> G[Color Properties]
-    C --> H[Path Morphing]
-    C --> I[Line Drawing]
-    D --> J[CSS Variables]
-    E --> K[Numeric Values]
-    
-    L[Animation Controls] --> M[Timelines]
-    L --> N[Staggering]
-    L --> O[Keyframes]
+## 🏗️ Tech Stack Compatibility
+
+<table>
+  <tr>
+    <th>Library</th>
+    <th>Laravel/PHP</th>
+    <th>Astro</th>
+    <th>React</th>
+    <th>Vue</th>
+    <th>Vanilla JS</th>
+    <th>File Size</th>
+  </tr>
+  <tr>
+    <td>Anime.js</td>
+    <td>✅</td>
+    <td>✅</td>
+    <td>✅</td>
+    <td>✅</td>
+    <td>✅</td>
+    <td>~10-15KB</td>
+  </tr>
+  <tr>
+    <td>GSAP</td>
+    <td>✅</td>
+    <td>✅</td>
+    <td>✅</td>
+    <td>✅</td>
+    <td>✅</td>
+    <td>~23KB+ (core)</td>
+  </tr>
+  <tr>
+    <td>Three.js</td>
+    <td>✅</td>
+    <td>✅</td>
+    <td>✅*</td>
+    <td>✅*</td>
+    <td>✅</td>
+    <td>~150KB+</td>
+  </tr>
+  <tr>
+    <td>Framer Motion</td>
+    <td>❌</td>
+    <td>✅**</td>
+    <td>✅</td>
+    <td>❌</td>
+    <td>❌</td>
+    <td>~15-20KB</td>
+  </tr>
+  <tr>
+    <td>Lottie</td>
+    <td>✅</td>
+    <td>✅</td>
+    <td>✅</td>
+    <td>✅</td>
+    <td>✅</td>
+    <td>~20KB</td>
+  </tr>
+  <tr>
+    <td>AOS</td>
+    <td>✅</td>
+    <td>✅</td>
+    <td>✅</td>
+    <td>✅</td>
+    <td>✅</td>
+    <td>~5-6KB</td>
+  </tr>
+  <tr>
+    <td>Motion One</td>
+    <td>✅</td>
+    <td>✅</td>
+    <td>✅</td>
+    <td>✅</td>
+    <td>✅</td>
+    <td>~2.6-18KB</td>
+  </tr>
+</table>
+
+\* Requires wrapper libraries like react-three-fiber for React integration
+\** Works in Astro's React islands
+
+## 📊 Libraries Comparison
+
+![Animation Libraries Comparison](https://via.placeholder.com/800x400?text=Animation+Libraries+Comparison+Chart)
+
+### Performance vs. Feature Richness
+
+```
+Feature Rich  │                 ★ GSAP
+              │               ★ Framer Motion
+              │             ★ Three.js
+              │           ★ Lottie
+              │         ★ Anime.js
+              │       ★ Motion One
+              │     ★ AOS
+Lightweight   │   ★ Pure CSS
+              └───────────────────────────
+                Low            Performance            High
 ```
 
-### 🎯 Performance Target Matrix
+## 📚 Animation Libraries
 
-| Performance Level | Device Target | Animation Complexity | Optimization Priority |
-|-------------------|---------------|----------------------|-----------------------|
-| 🟢 HIGH | High-end devices | Complex animations, rich visual effects | Standard optimization |
-| 🟡 MEDIUM | Average devices | Balanced animations, some visual enhancements | Enhanced optimization |
-| 🔴 LOW | Low-end devices | Minimal animations, core functionality only | Maximum optimization |
+### ✨ Anime.js: Lightweight and Versatile
 
----
+![Status](https://img.shields.io/badge/Status-Production%20Ready-success)
 
-## ✨ Features
+Anime.js is a lightweight JavaScript animation library known for its ease of use and versatility. It supports animating CSS properties, DOM attributes, SVG graphics, and JavaScript object values with a declarative API.
 
-### Core Capabilities
+#### Key Features
+- 🪶 Lightweight (~10-15KB gzipped) with high performance
+- 🎯 Animates CSS properties, SVGs, and object values
+- 📊 Timeline orchestration and staggering
+- 📱 Responsive animations with relative units and media queries
+- 🔄 Simple API with full animation control
 
-- **🎨 Versatile Targets**: 
-  - DOM elements
-  - CSS properties 
-  - SVG attributes
-  - JavaScript objects
+#### Use Cases
+- UI transitions and micro-interactions
+- SVG animations and morphing
+- Sequence-based animations
+- Interactive storytelling
 
-- **⚙️ Animation Controls**:
-  - Timelines for sequencing
-  - Staggering for multiple elements
-  - Keyframe animations
-  - Playback control (play, pause, reverse)
+#### Limitations
+- No dedicated 3D support
+- Fewer plugins compared to GSAP
+- Manual integration required for React/Vue
 
-- **📱 Responsive Design**:
-  - Media query support via Scope API
-  - Relative value units
-  - Device-adaptive animations
-
-- **🔧 Animation Types**:
-  - Property animations
-  - SVG path morphing
-  - Line drawing
-  - Color transitions
-  - 3D transforms
-
-### Feature Decision Matrix
-
-| Context Parameter | Feature Selection | Implementation Approach |
-|-------------------|------------------|-------------------------|
-| 🔴 LOW + SHARED_HOSTING | Base animate() only | Minimize animations, use only transform/opacity |
-| 🟡 MEDIUM + SHARED_HOSTING | animate() + stagger() | Limited sequences, optimize for performance |
-| 🟢 HIGH + ANY_HOSTING | Full feature set | Leverage all capabilities as needed |
-| ANY + SERVER-RENDERED | DOM-ready events | Ensure animations execute after DOM loads |
-| ANY + MODERN-FRAMEWORK | Component lifecycle hooks | Initialize animations in mount/effect hooks |
-
----
-
-## 📝 Implementation Guide
-
-### Installation Decision Tree
-
-```
-START
-├── Is the project using a build system with NPM/Yarn?
-│   ├── YES
-│   │   └── INSTALL METHOD: npm i animejs
-│   └── NO
-│       ├── Is the project on a shared hosting environment?
-│       │   ├── YES
-│       │   │   └── INSTALL METHOD: CDN with version lock
-│       │   │       └── <script src="https://cdn.jsdelivr.net/npm/animejs@4.0.2/lib/anime.min.js"></script>
-│       │   └── NO
-│       │       └── INSTALL METHOD: Download and self-host
-│       │           └── Download from https://github.com/juliangarnier/anime/releases
-└── END
+```javascript
+// Basic Anime.js example
+anime({
+  targets: '.element',
+  translateX: 250,
+  rotate: '1turn',
+  duration: 800,
+  easing: 'easeInOutQuad'
+});
 ```
 
-### Implementation Process
+### 🎭 GSAP (GreenSock Animation Platform)
 
-Follow this systematic approach for implementing Anime.js in your project:
+![Status](https://img.shields.io/badge/Status-Production%20Ready-success)
 
-1. **🔍 Analyze Requirements**
-   - Determine performance targets
-   - Identify platform context
-   - Assess animation complexity
-   - Evaluate hosting environment
+GSAP is one of the most powerful and battle-tested animation frameworks for the web, popular for its exceptional performance, rich feature set, and reliability across browsers.
 
-2. **📋 Select Integration Approach**
-   - Choose import strategy based on needs
-   - Apply framework-specific patterns
-   - Implement device adaptations
+#### Key Features
+- 🔋 Extremely powerful and feature-rich
+- ⚡ High-performance engine for complex animations
+- 🧩 Rich plugin ecosystem (ScrollTrigger, MorphSVG, etc.)
+- 🌐 Cross-framework compatibility
+- 🎛️ Precise timing control and sequencing
 
-3. **🎬 Develop Animations**
-   - Start with core patterns
-   - Add intermediate complexity as needed
-   - Implement advanced patterns last
-   - Test across devices and browsers
+#### Use Cases
+- Complex, choreographed animations
+- Scroll-based effects and parallax
+- Advanced interactive experiences
+- Professional motion graphics
+- Game-like animations
 
----
+#### Limitations
+- Larger file size (~23KB+ for core, ~50-60KB+ with plugins)
+- Steeper learning curve
+- Runs on main thread (though highly optimized)
+- Proprietary license (free for most uses)
 
-## 📦 Installation
+```javascript
+// Basic GSAP example
+gsap.to(".element", {
+  x: 200,
+  rotation: 360,
+  duration: 1,
+  ease: "power2.inOut"
+});
+```
 
-### NPM/Yarn (Recommended)
+### 🌌 Three.js: WebGL-Powered 3D Graphics
+
+![Status](https://img.shields.io/badge/Status-Production%20Ready-success)
+
+Three.js is the go-to JavaScript library for incorporating 3D graphics and animations into web projects, providing a high-level abstraction over WebGL.
+
+#### Key Features
+- 🌟 Enables rich 3D content on the web
+- 🚀 GPU-accelerated rendering
+- 🧊 3D models, lighting, materials, and camera controls
+- 📱 Cross-platform and responsive
+- 🧰 Large ecosystem of plugins and extensions
+
+#### Use Cases
+- 3D product visualizations
+- Interactive 3D experiences
+- Data visualization in 3D
+- VR/AR web experiences
+- Immersive backgrounds
+
+#### Limitations
+- Steep learning curve (3D concepts)
+- Heavy resource usage
+- Large file size (~150KB+)
+- Requires additional tools for timeline animations
+
+```javascript
+// Basic Three.js scene setup
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+const renderer = new THREE.WebGLRenderer();
+renderer.setSize(window.innerWidth, window.innerHeight);
+document.body.appendChild(renderer.domElement);
+
+// Create cube
+const geometry = new THREE.BoxGeometry();
+const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
+const cube = new THREE.Mesh(geometry, material);
+scene.add(cube);
+camera.position.z = 5;
+
+// Animation loop
+function animate() {
+  requestAnimationFrame(animate);
+  cube.rotation.x += 0.01;
+  cube.rotation.y += 0.01;
+  renderer.render(scene, camera);
+}
+animate();
+```
+
+### 🔄 Framer Motion (React Motion Library)
+
+![Status](https://img.shields.io/badge/Status-Production%20Ready-success)
+
+Framer Motion is a popular animation library specifically for React, offering a declarative, component-based approach to animations with physics-powered motion.
+
+#### Key Features
+- ⚛️ Seamless React integration
+- 🔄 Animates outside React's render cycle for performance
+- 🎮 Built-in gesture support (hover, tap, drag)
+- 📦 Component-based animations with variants
+- 🎭 AnimatePresence for mount/unmount transitions
+
+#### Use Cases
+- React UI transitions
+- Gesture-based interactions
+- Component mount/unmount animations
+- Shared element transitions
+- Layout animations
+
+#### Limitations
+- React-only (not for vanilla JS or other frameworks)
+- Requires React to be loaded
+- Less low-level control than GSAP
+- Learning curve for variants system
+
+```jsx
+// Basic Framer Motion example
+import { motion } from "framer-motion";
+
+function Component() {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.5 }}
+    >
+      Animated content
+    </motion.div>
+  );
+}
+```
+
+### 🎨 Lottie: High-Quality Animations from Design Tools
+
+![Status](https://img.shields.io/badge/Status-Production%20Ready-success)
+
+Lottie is a library for rendering Adobe After Effects animations on the web and mobile through JSON files exported with the Bodymovin plugin.
+
+#### Key Features
+- 🎨 Designer-friendly, high complexity animations
+- 🪶 Lightweight JSON files compared to video/GIF
+- 📱 Vector-based and resolution-independent
+- 💻 Cross-platform consistency (web, iOS, Android)
+- 🧩 Easy implementation
+
+#### Use Cases
+- Complex vector animations and illustrations
+- Animated icons and logos
+- Loading indicators
+- Storytelling animations
+- Brand animations
+
+#### Limitations
+- Requires After Effects for creation
+- Limited ability to modify animation via code
+- Complex animations can tax CPU/GPU
+- Not for layout or UI transitions
+
+```javascript
+// Basic Lottie implementation
+const animation = lottie.loadAnimation({
+  container: document.getElementById('lottie-container'),
+  renderer: 'svg',
+  loop: true,
+  autoplay: true,
+  path: 'animation.json'
+});
+```
+
+### 📜 AOS (Animate On Scroll)
+
+![Status](https://img.shields.io/badge/Status-Production%20Ready-success)
+
+AOS is a small, lightweight library that focuses specifically on scroll-triggered animations, making elements animate into view as the user scrolls.
+
+#### Key Features
+- 📜 Simple scroll-triggered animations
+- 🪶 Extremely lightweight (~5-6KB)
+- 🚫 No custom JS required, just data attributes
+- 🎨 CSS-powered for performance
+- 📱 Configurable and responsive
+
+#### Use Cases
+- Revealing content on scroll
+- Entrance animations for sections
+- Simple scroll effects
+- Marketing websites
+- Landing pages
+
+#### Limitations
+- Limited to simple entrance animations
+- No complex scroll interactions
+- Preset animations might not cover all needs
+- No other interaction types (click, hover)
+
+```html
+<!-- Basic AOS implementation -->
+<div data-aos="fade-up" data-aos-duration="1000">
+  This element will fade up when scrolled into view
+</div>
+```
+
+### 🔄 Motion One: Modern Web Animations with WAAPI
+
+![Status](https://img.shields.io/badge/Status-Production%20Ready-success)
+
+Motion One is a newer animation library built on top of the Web Animations API (WAAPI), designed to be lightweight and leverage the browser's native animation capabilities.
+
+#### Key Features
+- ⚡ Tiny size with native performance (~2.6KB core)
+- 🔄 Offloads animation to browser thread
+- 🖥️ Hardware-accelerated by default
+- 📜 Support for ScrollTimeline for scroll animations
+- 🌐 Framework-agnostic
+
+#### Use Cases
+- High-performance animations
+- When bundle size is critical
+- Modern browser experiences
+- Complements framework-specific libraries
+- Scroll-linked animations
+
+#### Limitations
+- Newer library with smaller community
+- WAAPI reliance limits older browser support
+- Fewer specialized utilities out-of-box
+- No built-in development tools
+
+```javascript
+// Basic Motion One example
+import { animate } from "motion";
+
+animate(".element", 
+  { x: 100, opacity: 1 }, 
+  { duration: 0.5, easing: "ease-in-out" }
+);
+```
+
+### 🎨 Pure CSS/Native Approaches
+
+![Status](https://img.shields.io/badge/Status-Production%20Ready-success)
+
+Using CSS transitions, animations, and the Web Animations API directly without additional libraries can be ideal for simple animations.
+
+#### Key Features
+- 🪶 Zero additional script overhead
+- ⚡ Native browser performance
+- 🚀 GPU acceleration for transforms/opacity
+- 📦 No external dependencies
+- 🔄 Future-proof as CSS evolves
+
+#### Use Cases
+- Simple UI transitions
+- Hover/focus effects
+- Basic fade/slide animations
+- When minimizing dependencies is critical
+- Performance-critical applications
+
+#### Limitations
+- Limited control for complex sequences
+- No timeline or orchestration
+- Harder to create dynamic, conditional animations
+- No built-in scroll synchronization
+
+```css
+/* Basic CSS animation */
+.element {
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.element:hover {
+  transform: scale(1.1);
+  opacity: 0.8;
+}
+```
+
+## 🧩 Combining Libraries
+
+Different animation libraries can be combined effectively for complex projects:
+
+### Recommended Combinations
+
+- **GSAP + Three.js**: Use GSAP to animate Three.js objects and camera
+- **Anime.js + AOS**: Combine scroll detection with complex animations
+- **Framer Motion + Lottie**: React UI animations with Lottie illustrations
+- **Motion One + Pure CSS**: High-performance animations with minimal footprint
+
+### Best Practices for Integration
+
+1. **Scope libraries to different concerns** - Avoid animating the same element with multiple libraries
+2. **Use a master orchestrator** - Designate one library (often GSAP) as the coordinator
+3. **Watch performance** - Monitor for conflicts or excessive resource usage
+4. **Consistent timing and easing** - Maintain uniform motion design across libraries
+5. **Lazy load when possible** - Only load libraries when needed
+
+## 🚀 Best Practices
+
+### Performance Optimization
+
+- ✅ **Animate transform and opacity** whenever possible
+- ✅ **Stagger animations** rather than animating everything at once
+- ✅ Use `will-change` or layer promotion wisely
+- ✅ Avoid expensive JavaScript in animation loops
+- ✅ Throttle/debounce scroll events or use IntersectionObserver
+- ✅ Always use requestAnimationFrame for custom animations
+- ✅ Optimize media and asset sizes
+- ✅ Profile and test on real target devices
+
+### Responsive Considerations
+
+- ✅ Use relative units for animations
+- ✅ Respect `prefers-reduced-motion` settings
+- ✅ Simplify animations on lower-end devices
+- ✅ Test on various viewports and device types
+- ✅ Consider loading alternatives for older browsers
+
+## 💻 Installation
+
+Each library has its own installation method. Here are the most common approaches:
+
+### NPM/Yarn
 
 ```bash
-# NPM
+# Anime.js
 npm install animejs
 
-# Yarn
-yarn add animejs
+# GSAP
+npm install gsap
+
+# Three.js
+npm install three
+
+# Framer Motion
+npm install framer-motion
+
+# Lottie
+npm install lottie-web
+
+# AOS
+npm install aos
+
+# Motion One
+npm install motion
 ```
 
 ### CDN
 
 ```html
-<!-- Latest version -->
-<script src="https://cdn.jsdelivr.net/npm/animejs@4.0.2/lib/anime.min.js"></script>
+<!-- Anime.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+
+<!-- GSAP -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+
+<!-- Three.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.149.0/three.min.js"></script>
+
+<!-- Lottie -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.9.6/lottie.min.js"></script>
+
+<!-- AOS -->
+<link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+
+<!-- Motion One -->
+<script src="https://cdn.jsdelivr.net/npm/motion@10.15.5/dist/motion.min.js"></script>
 ```
 
-### Self-Hosted
+## 💡 Usage Examples
 
-Download the latest release from [GitHub](https://github.com/juliangarnier/anime/releases) and include it in your project:
+Check our [examples directory](./examples) for sample implementations and common patterns:
 
-```html
-<script src="path/to/anime.min.js"></script>
-```
+- [Basic animations](./examples/basic)
+- [Scroll effects](./examples/scroll)
+- [3D experiences](./examples/3d)
+- [UI animations](./examples/ui)
+- [Combined libraries](./examples/combined)
 
-### Module Import (ES6)
+## 🔮 Future Improvements
 
-```javascript
-// Import the entire library
-import anime from 'animejs';
-
-// Import specific functions (recommended for tree-shaking)
-import { animate, stagger, createTimeline } from 'animejs';
-```
-
----
-
-## ⚡ Performance Optimization
-
-### Optimization Algorithm
-
-```javascript
-function determineOptimizationStrategy(context) {
-  // Initialize optimization array
-  const optimizations = [];
-  
-  // Step 1: Always use hardware-accelerated properties
-  optimizations.push({
-    type: "HARDWARE_ACCELERATION",
-    implementation: "Use transform and opacity properties exclusively when possible"
-  });
-  
-  // Step 2: Analyze device target and adjust accordingly
-  if (context.performanceTarget === "LOW") {
-    optimizations.push({
-      type: "USE_WAAPI",
-      implementation: "Implement Web Animations API version for simple animations"
-    });
-    
-    optimizations.push({
-      type: "REDUCE_ANIMATIONS",
-      implementation: "Limit number and complexity of animations"
-    });
-  }
-  
-  // Step 3: Apply framework-specific optimizations
-  if (context.platformContext === "MODERN-FRAMEWORK") {
-    optimizations.push({
-      type: "TREESHAKING",
-      implementation: "Import only required functions"
-    });
-    
-    optimizations.push({
-      type: "CLEANUP",
-      implementation: "Ensure animations are properly cleaned up on component unmount"
-    });
-  }
-  
-  return optimizations;
-}
-```
-
-### Performance Best Practices
-
-- ✅ **Animate transform and opacity** whenever possible
-- ✅ Use **will-change** for frequently animated elements
-- ✅ Implement **staggering** for multiple elements
-- ✅ Optimize SVG paths before animation
-- ✅ Reduce animations on low-end devices
-- ✅ Respect user preference for reduced motion
-- ❌ Avoid animating properties that trigger layout recalculations
-- ❌ Don't animate too many elements simultaneously
-
----
-
-## 🔄 Framework Integration
-
-### React Implementation Template
-
-```javascript
-// Step 1: Import required functions from anime.js
-import { animate, stagger } from 'animejs';
-import { useEffect, useRef } from 'react';
-
-// Step 2: Create component with animation logic
-function AnimatedComponent() {
-  // Step 2.1: Create reference to DOM element
-  const elementRef = useRef(null);
-  
-  // Step 2.2: Initialize animation in useEffect hook
-  useEffect(() => {
-    // Step 2.3: Only run animation if element exists
-    if (elementRef.current) {
-      // Step 2.4: Create animation with configuration
-      animate(elementRef.current, {
-        translateX: 250,
-        rotate: 360,
-        duration: 1000,
-        easing: 'easeInOutQuad'
-      });
-    }
-    
-    // Step 2.5: Optional cleanup for animations that need to be stopped
-    return () => {
-      // Animation cleanup if needed
-    };
-  }, []); // Empty dependency array means run once on mount
-  
-  // Step 3: Return component JSX with ref attached
-  return <div ref={elementRef} className="element"></div>;
-}
-```
-
-### Vue Implementation Template
-
-```javascript
-<template>
-  <!-- Step 1: Create element with ref attribute -->
-  <div ref="element" class="element"></div>
-</template>
-
-<script>
-// Step 2: Import animate function
-import { animate } from 'animejs';
-
-export default {
-  // Step 3: Initialize animation in lifecycle hook
-  mounted() {
-    // Step 3.1: Access element via refs and animate
-    animate(this.$refs.element, {
-      translateX: 250,
-      rotate: 360,
-      duration: 1000,
-      easing: 'easeInOutQuad'
-    });
-  },
-  // Step 4: Optional cleanup in beforeUnmount
-  beforeUnmount() {
-    // Animation cleanup if needed
-  }
-}
-</script>
-```
-
-### Server-Rendered Implementation Template
-
-```php
-<!-- Step 1: Create target element with unique ID -->
-<div id="anime-element-<?php echo $uniqueId; ?>" class="element"></div>
-
-<!-- Step 2: Add script after element definition -->
-<script>
-  // Step 2.1: Wait for DOM to be ready
-  document.addEventListener('DOMContentLoaded', () => {
-    // Step 2.2: Import anime.js is already handled via <script> tag
-    
-    // Step 2.3: Select element and animate
-    anime({
-      targets: '#anime-element-<?php echo $uniqueId; ?>',
-      translateX: 250,
-      rotate: 360,
-      duration: 1000,
-      easing: 'easeInOutQuad'
-    });
-  });
-</script>
-```
-
----
-
-## 🌐 Browser Compatibility
-
-Anime.js works reliably across all modern browsers. Here's a compatibility breakdown:
-
-| Browser | Minimum Version | Support Level | Notes |
-|---------|----------------|---------------|-------|
-| Chrome | 55+ | ✅ Full | Excellent performance |
-| Firefox | 52+ | ✅ Full | Excellent performance |
-| Safari | 11+ | ✅ Full | Occasional SVG differences |
-| Edge | 15+ | ✅ Full | Excellent performance |
-| IE11 | - | ❌ Not supported | Use polyfills or CSS fallbacks |
-
----
-
-## 🎮 Examples
-
-### Basic Property Animation
-
-```javascript
-// Simple translation and rotation
-animate('.element', {
-  translateX: 250,
-  rotate: 360,
-  duration: 1000,
-  easing: 'easeOutQuad'
-});
-```
-
-### Staggered Animation
-
-```javascript
-// Animate multiple elements with staggered timing
-animate('.item', {
-  translateY: [50, 0],
-  opacity: [0, 1],
-  duration: 800,
-  delay: stagger(100, {from: 'center'})
-});
-```
-
-### Timeline Sequence
-
-```javascript
-// Create a timeline for sequenced animations
-const timeline = createTimeline();
-
-timeline
-  .add('.first', {
-    translateX: 250,
-    duration: 1000
-  })
-  .add('.second', {
-    translateY: 50,
-    duration: 800
-  }, '-=400') // Start 400ms before previous animation ends
-  .add('.third', {
-    rotate: 360,
-    duration: 1200
-  });
-```
-
-### SVG Path Animation
-
-```javascript
-// Animate SVG path drawing
-const drawable = createDrawable('.svg-path');
-
-animate(drawable, {
-  draw: [0, 1], // From 0% to 100% of path
-  duration: 2000,
-  easing: 'easeInOutSine'
-});
-```
-
-### Scroll-Triggered Animation
-
-```javascript
-// Animation triggered by scroll position
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      animate(entry.target, {
-        translateY: [50, 0],
-        opacity: [0, 1],
-        duration: 800
-      });
-      
-      // Only animate once
-      observer.unobserve(entry.target);
-    }
-  });
-}, { threshold: 0.1 });
-
-// Observe elements
-document.querySelectorAll('.scroll-animate').forEach(el => {
-  observer.observe(el);
-});
-```
-
----
-
-## 📊 Comparison with Other Libraries
-
-| Feature | Anime.js | GSAP | Framer Motion | Motion One | Three.js |
-|---------|----------|------|---------------|------------|----------|
-| **File Size** | 🟢 Small (~10-15KB) | 🟡 Larger (~23-60KB) | 🟡 Medium (~20KB) | 🟢 Tiny (~2-18KB) | 🔴 Large (150KB+) |
-| **Performance** | 🟢 High | 🟢 Very High | 🟢 High | 🟢 Very High | 🟡 Depends on scene |
-| **Learning Curve** | 🟢 Gentle | 🟡 Moderate | 🟡 Moderate | 🟢 Gentle | 🔴 Steep (3D) |
-| **Framework Agnostic** | 🟢 Yes | 🟢 Yes | 🔴 React-focused | 🟢 Yes | 🟢 Yes |
-| **Timeline Support** | 🟢 Yes | 🟢 Advanced | 🟡 Limited | 🟢 Yes | 🔴 No (needs addon) |
-| **3D Support** | 🟡 Limited (CSS 3D) | 🟡 Limited (CSS 3D) | 🟡 Limited (CSS 3D) | 🟡 Limited (CSS 3D) | 🟢 Advanced (WebGL) |
-| **SVG Animation** | 🟢 Strong | 🟢 Very Strong | 🟢 Strong | 🟡 Basic | 🟡 Via workarounds |
-| **Scroll Animations** | 🟢 Built-in (v4) | 🟢 Advanced (plugin) | 🟡 Basic | 🟢 Native API | 🔴 Requires custom |
-| **Physics** | 🟡 Basic | 🟢 Advanced | 🟢 Advanced | 🟢 Springs | 🟡 Via addons |
-| **Browser Support** | 🟢 Modern | 🟢 Excellent | 🟢 Modern | 🟡 Modern only | 🟡 WebGL support |
-
-### Library Selection Algorithm
-
-```
-IF animation_complexity == HIGH AND elements_count > 3000 THEN
-  recommended_library = "GSAP"
-ELSE IF bundle_size_critical == TRUE AND animation_complexity <= MEDIUM THEN
-  recommended_library = "anime.js"
-ELSE IF modern_framework_integration == PRIMARY_CONCERN THEN
-  IF framework == "React" THEN
-    recommended_library = "framer-motion OR anime.js" 
-  ELSE
-    recommended_library = "anime.js"
-ELSE
-  recommended_library = "anime.js"
-END IF
-```
-
----
-
-## 🚧 Future Improvements
-
-- [ ] Enhance documentation with more device-specific optimizations
-- [ ] Develop additional framework-specific integration templates
-- [ ] Create specific performance test suites for different devices
-- [ ] Implement extended scroll animation capabilities
-- [ ] Add more interactive examples with code samples
-- [ ] Create pre-built animation patterns library
-- [ ] Develop visual timeline tools for animation development
-- [ ] Improve SVG optimization techniques for better performance
-- [ ] Add TypeScript support and type definitions
-- [ ] Implement AI-driven animation suggestions
-
----
-
-## 📚 Resources
-
-- [Official Documentation](https://animejs.com/documentation/)
-- [GitHub Repository](https://github.com/juliangarnier/anime/)
-- [Animation Examples](https://animejs.com/documentation/#examples)
-- [Browser Support](https://caniuse.com/?search=web%20animations)
-- [Performance Optimization Guide](https://github.com/juliangarnier/anime/wiki/)
-- [Community Discord](https://discord.gg/animejs)
-
----
+- [ ] Add more specific performance benchmarks
+- [ ] Create interactive demos for each library
+- [ ] Add TypeScript integration examples
+- [ ] Expand on mobile-specific optimizations
+- [ ] Include accessibility considerations for animations
+- [ ] Add integration examples with backend frameworks
+- [ ] Create video tutorials for complex setups
+- [ ] Develop a decision tree for choosing libraries
 
 ## 👨‍💻 Author
 
-<div align="center">
-  
-  ### Created with ❤️ by Anik Sarker Akash
-  
-  [![GitHub](https://img.shields.io/badge/GitHub-Follow-black?style=for-the-badge&logo=github)](https://github.com/aniksarker)
-  [![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-blue?style=for-the-badge&logo=linkedin)](https://linkedin.com/in/aniksarker)
-  [![Twitter](https://img.shields.io/badge/Twitter-Follow-blue?style=for-the-badge&logo=twitter)](https://twitter.com/aniksarker)
-  
-</div>
+**Anik Sarker Akash**
+
+- Website: [aniksarkerakash.com](https://aniksarkerakash.com)
+- GitHub: [@AnikSarkerAkash](https://github.com/AnikSarkerAkash)
+- LinkedIn: [aniksarkerakash](https://linkedin.com/in/aniksarkerakash)
+
+Created with ❤️ by Anik Sarker Akash
 
 ---
 
-## 📄 License
+## 📝 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is [MIT](./LICENSE) licensed.
+
+---
+
+⭐ If you found this useful, please star the repository!
