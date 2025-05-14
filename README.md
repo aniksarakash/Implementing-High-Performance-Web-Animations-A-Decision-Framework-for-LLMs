@@ -1,4 +1,4 @@
-# 🚀 High-Performance Animation Libraries
+# 🚀 Implementing High-Performance Web Animations: A Decision Framework for LLMs
 ![Version](https://img.shields.io/badge/version-1.0.0-blue.svg?cacheSeconds=2592000)
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
 ![Last Commit](https://img.shields.io/badge/last%20commit-May%202025-brightgreen)
