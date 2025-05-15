@@ -20,6 +20,8 @@
   - [AOS](#-aos-animate-on-scroll)
   - [Motion One](#-motion-one-modern-web-animations-with-waapi)
   - [Pure CSS/Native](#-pure-cssnative-approaches)
+  - [Babylon.js](#-babylonjs-3d-rendering-engine)
+  - [Pixi.js](#-pixijs-2d-webgl-renderer)
 - [Combining Libraries](#-combining-libraries)
 - [Best Practices](#-best-practices)
 - [Installation](#-installation)
@@ -33,7 +35,7 @@ This repository provides in-depth analysis of popular animation libraries for mo
 
 ### Key Features
 
-- ✨ **Comprehensive analysis** of 7+ animation libraries
+- ✨ **Comprehensive analysis** of 10+ animation libraries
 - 🔄 **Compatibility guide** for Laravel, Astro, React, Vue, and vanilla JS projects
 - ⚡ **Performance optimization** techniques for smooth animations
 - 📱 **Responsive animation** considerations for all device types
@@ -115,6 +117,24 @@ This repository provides in-depth analysis of popular animation libraries for mo
     <td>✅</td>
     <td>~2.6-18KB</td>
   </tr>
+  <tr>
+    <td>Babylon.js</td>
+    <td>✅</td>
+    <td>✅</td>
+    <td>✅*</td>
+    <td>✅*</td>
+    <td>✅</td>
+    <td>~200KB+</td>
+  </tr>
+  <tr>
+    <td>Pixi.js</td>
+    <td>✅</td>
+    <td>✅</td>
+    <td>✅*</td>
+    <td>✅*</td>
+    <td>✅</td>
+    <td>~100KB+</td>
+  </tr>
 </table>
 
 \* Requires wrapper libraries like react-three-fiber for React integration
@@ -127,14 +147,16 @@ This repository provides in-depth analysis of popular animation libraries for mo
 ### Performance vs. Feature Richness
 
 ```
-Feature Rich  │                 ★ GSAP
-              │               ★ Framer Motion
-              │             ★ Three.js
-              │           ★ Lottie
-              │         ★ Anime.js
-              │       ★ Motion One
-              │     ★ AOS
-Lightweight   │   ★ Pure CSS
+Feature Rich  │                   ★ GSAP
+              │                 ★ Babylon.js
+              │               ★ Three.js
+              │             ★ Framer Motion
+              │           ★ Pixi.js
+              │         ★ Lottie
+              │       ★ Anime.js
+              │     ★ Motion One
+              │   ★ AOS
+Lightweight   │ ★ Pure CSS
               └───────────────────────────
                 Low            Performance            High
 ```
@@ -407,8 +429,8 @@ Motion One is a newer animation library built on top of the Web Animations API (
 // Basic Motion One example
 import { animate } from "motion";
 
-animate(".element", 
-  { x: 100, opacity: 1 }, 
+animate(".element",
+  { x: 100, opacity: 1 },
   { duration: 0.5, easing: "ease-in-out" }
 );
 ```
@@ -449,6 +471,122 @@ Using CSS transitions, animations, and the Web Animations API directly without a
   transform: scale(1.1);
   opacity: 0.8;
 }
+```
+
+### 🎮 Babylon.js: 3D Rendering Engine
+
+![Status](https://img.shields.io/badge/Status-Production%20Ready-success)
+
+Babylon.js is a powerful, beautiful, simple, and open-source 3D rendering engine built for the web, with a focus on gaming and interactive applications.
+
+#### Key Features
+- 🎮 Complete 3D game engine for the web
+- 🌐 WebGL-based with WebGPU support
+- 📱 Cross-platform and responsive
+- 🎨 Advanced materials, lighting, and physics
+- 🧩 Rich ecosystem with GUI, particles, and post-processing
+
+#### Use Cases
+- 3D games and interactive experiences
+- Architectural visualizations
+- Virtual tours and product configurators
+- Educational simulations
+- Advanced data visualizations
+
+#### Limitations
+- Steeper learning curve than Three.js
+- Larger file size (~200KB+ for core)
+- Requires understanding of 3D concepts
+- Overkill for simple animations
+
+```javascript
+// Basic Babylon.js scene setup
+const canvas = document.getElementById("renderCanvas");
+const engine = new BABYLON.Engine(canvas, true);
+
+const createScene = function() {
+  const scene = new BABYLON.Scene(engine);
+  const camera = new BABYLON.ArcRotateCamera("camera", -Math.PI / 2, Math.PI / 2.5, 3, new BABYLON.Vector3(0, 0, 0), scene);
+  camera.attachControl(canvas, true);
+  const light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(0, 1, 0), scene);
+
+  // Create a sphere
+  const sphere = BABYLON.MeshBuilder.CreateSphere("sphere", {diameter: 2, segments: 32}, scene);
+
+  // Animation
+  const frameRate = 30;
+  const xSlide = new BABYLON.Animation("xSlide", "position.x", frameRate, BABYLON.Animation.ANIMATIONTYPE_FLOAT, BABYLON.Animation.ANIMATIONLOOPMODE_CYCLE);
+  const keyFrames = [];
+  keyFrames.push({ frame: 0, value: -2 });
+  keyFrames.push({ frame: frameRate, value: 2 });
+  keyFrames.push({ frame: 2 * frameRate, value: -2 });
+  xSlide.setKeys(keyFrames);
+  sphere.animations.push(xSlide);
+  scene.beginAnimation(sphere, 0, 2 * frameRate, true);
+
+  return scene;
+};
+
+const scene = createScene();
+engine.runRenderLoop(function() {
+  scene.render();
+});
+
+window.addEventListener("resize", function() {
+  engine.resize();
+});
+```
+
+### 🎨 Pixi.js: 2D WebGL Renderer
+
+![Status](https://img.shields.io/badge/Status-Production%20Ready-success)
+
+Pixi.js is a fast, lightweight 2D rendering library that works across all devices, focusing on speed and performance for interactive graphics and games.
+
+#### Key Features
+- 🚀 High-performance 2D WebGL renderer with Canvas fallback
+- 🎮 Optimized for interactive applications and games
+- 🖼️ Excellent for sprite-based animations
+- 📱 Mobile-friendly with touch support
+- 🧩 Rich plugin ecosystem
+
+#### Use Cases
+- 2D games and interactive experiences
+- Data visualizations
+- Interactive infographics
+- Animated UI components
+- Banner ads and marketing materials
+
+#### Limitations
+- Limited to 2D graphics
+- Requires custom animation logic
+- Less suitable for simple UI transitions
+- Steeper learning curve than CSS/GSAP for basic needs
+
+```javascript
+// Basic Pixi.js setup with animation
+const app = new PIXI.Application({
+  width: 800,
+  height: 600,
+  backgroundColor: 0x1099bb
+});
+document.body.appendChild(app.view);
+
+// Create a sprite
+const sprite = PIXI.Sprite.from('bunny.png');
+sprite.anchor.set(0.5);
+sprite.x = app.screen.width / 2;
+sprite.y = app.screen.height / 2;
+app.stage.addChild(sprite);
+
+// Animation loop
+app.ticker.add((delta) => {
+  // Rotate the sprite
+  sprite.rotation += 0.01 * delta;
+
+  // Bounce animation
+  sprite.y = app.screen.height / 2 + Math.sin(app.ticker.lastTime / 200) * 50;
+});
 ```
 
 ## 🧩 Combining Libraries
@@ -518,6 +656,12 @@ npm install aos
 
 # Motion One
 npm install motion
+
+# Babylon.js
+npm install @babylonjs/core
+
+# Pixi.js
+npm install pixi.js
 ```
 
 ### CDN
@@ -541,6 +685,12 @@ npm install motion
 
 <!-- Motion One -->
 <script src="https://cdn.jsdelivr.net/npm/motion@10.15.5/dist/motion.min.js"></script>
+
+<!-- Babylon.js -->
+<script src="https://cdn.babylonjs.com/babylon.js"></script>
+
+<!-- Pixi.js -->
+<script src="https://cdn.jsdelivr.net/npm/pixi.js@7.2.4/dist/pixi.min.js"></script>
 ```
 
 ## 💡 Usage Examples
@@ -559,10 +709,12 @@ Check our [examples directory](./examples) for sample implementations and common
 - [ ] Create interactive demos for each library
 - [ ] Add TypeScript integration examples
 - [ ] Expand on mobile-specific optimizations
-- [ ] Include accessibility considerations for animations
+- [x] Include accessibility considerations for animations
 - [ ] Add integration examples with backend frameworks
 - [ ] Create video tutorials for complex setups
-- [ ] Develop a decision tree for choosing libraries
+- [x] Develop a decision tree for choosing libraries
+- [ ] Add performance comparison charts between libraries
+- [ ] Create a web-based library selector tool
 
 ## 👨‍💻 Author
 
